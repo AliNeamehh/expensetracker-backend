@@ -6,13 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to the Expense Tracker</h1>
-    <p>Please enter your name to start tracking your expenses.</p>
+    <h1>Expense Tracker</h1>
 
-    <form id="user-form">
-        <input type="text" id="name" placeholder="Enter your name" required>
-        <button type="submit">Continue</button>
+    <form id="login-form">
+        <input type="text" id="username" placeholder="Enter your name" required>
+        <button type="submit">Login</button>
     </form>
+
+    <form id="transaction-form" style="display:none;">
+        <input type="text" id="description" placeholder="Description" required>
+        <input type="number" id="amount" placeholder="Amount" required>
+        <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+        <button type="submit">Add Transaction</button>
+    </form>
+
+    <div id="total-budget">Total Budget: $<span id="budget">0</span></div>
+    <ul id="transaction-list"></ul>
+
     <script src="scripts/main.js"></script>
 </body>
 </html>
