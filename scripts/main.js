@@ -14,7 +14,7 @@ document.getElementById('login-form').addEventListener('submit',(e)=>{
         userId=data.id;
         document.getElementById('login-form').style.display='none';
         document.getElementById('transaction-form').style.display='block';
-
+         loadTransaction();
     });
 });
 
@@ -35,5 +35,24 @@ document.getElementById('transaction-form').addEventListener('submit', (e) => {
      
     });
 });
+
+function loadTransaction(){
+    fetch(`./api/getTransactions.php?user_id=${userId}`)
+    .then(response=>response.json())
+    .then(transactions=>{
+        document.getElementById('transaction-list').innerHTML='';
+        let total=0;
+        transactions.forEach(transaction=>{
+            const li=document.createElement('li');
+            li.textContent=`${transaction.description}: $${transaction.amount}(${transaction.type})`;
+            document.getElementById('transaction-list').appendChild(li);
+
+            total +=transaction.type==='income'? transaction.amount: -transaction.amount;
+
+        });
+        document.getElementById('budget').textContent=total;
+    });
+}
+
 
 
