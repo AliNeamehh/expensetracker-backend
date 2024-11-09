@@ -17,3 +17,23 @@ document.getElementById('login-form').addEventListener('submit',(e)=>{
 
     });
 });
+
+document.getElementById('transaction-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const description = document.getElementById('description').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+    const type = document.getElementById('type').value;
+
+    fetch('./api/addTransaction.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId, description, amount, type })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Transaction added:', data);
+     
+    });
+});
+
+
