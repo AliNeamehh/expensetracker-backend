@@ -4,7 +4,7 @@ document.getElementById('login-form').addEventListener('submit',(e)=>{
  e.preventDefault();
  const name=document.getElementById('username').value;
  console.log(name);
-    fetch('/api/addUser.php',{
+    fetch('../api/addUser.php',{
         method:'Post',
         headers:{'Content-Type': 'application/json'},
         body :JSON.stringify({ name })
